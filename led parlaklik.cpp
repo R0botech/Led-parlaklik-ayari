@@ -1,18 +1,15 @@
-const int ledPin = 10 ;    
-const int pot = 0 ;     
+#define LED = 10 ;    
+#define pot = A0 ;     
 
 void setup(){
      Serial.begin(9600);
-     pinMode(ledPin,OUTPUT) ;        //setting pin 2 as output
+     pinMode(LED,OUTPUT) ;        
 }
 
 void loop(){
+  int deger = analogRead(0);
+  //deger = map(deger, 0, 1023, 0, 255);
+ 	deger = deger/4; //(0-1023)/4 = 0-255
+  analogWrite(LED, deger);
   
-     int pot  = analogRead(0) ;  
-     pot = map(pot, 0, 1023, 0, 255); 
-     int dutyCycle = map(pot,0, 255, 0, 100);
-     analogWrite(ledPin,pot) ;
-     Serial.print(dutyCycle);
-     Serial.println(" %");
-     delay(2000);
 }
